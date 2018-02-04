@@ -76,4 +76,28 @@ class TestGildedRose < Test::Unit::TestCase
     GildedRose.new(items).update_quality
     assert_equal 0, items[0].quality
   end
+
+  def test_conjured_degrades_quality_by_2_when_sellby_above_0
+    items = [Item.new('Conjured', 5, 40)]
+    GildedRose.new(items).update_quality
+    assert_equal 38, items[0].quality
+  end
+
+  def test_conjured_degrades_to_0_when_quality_1
+    items = [Item.new('Conjured', 5, 1)]
+    GildedRose.new(items).update_quality
+    assert_equal 0, items[0].quality
+  end
+
+  def test_conjured_degrades_by_4_when_sellby_below_0
+    items = [Item.new('Conjured', -1, 40)]
+    GildedRose.new(items).update_quality
+    assert_equal 36, items[0].quality
+  end
+
+  def test_conjured_degrades_to_0_when_sellby_below_0_and_quality_3
+    items = [Item.new('Conjured', -1, 3)]
+    GildedRose.new(items).update_quality
+    assert_equal 0, items[0].quality
+  end
 end
