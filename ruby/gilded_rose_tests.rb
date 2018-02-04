@@ -4,7 +4,7 @@ require 'test/unit'
 class TestGildedRose < Test::Unit::TestCase
   def test_foo
     items = [Item.new("foo", 0, 0)]
-    GildedRose.new(items).update_quality()
+    GildedRose.new(items).update_quality
     assert_equal('foo', items[0].name)
   end
 
@@ -42,9 +42,15 @@ class TestGildedRose < Test::Unit::TestCase
   end
 
   def test_sulfuras_does_not_decrease_quality
-    items = [Item.new('Sulfuras, Hand of Ragnaros', -5, 40)]
+    items = [Item.new('Sulfuras, Hand of Ragnaros', -5, 80)]
     GildedRose.new(items).update_quality
-    assert_equal 40, items[0].quality
+    assert_equal 80, items[0].quality
+  end
+
+  def test_sulfuras_quality_always_80
+    items = [Item.new('Sulfuras, Hand of Ragnaros', 5, 80)]
+    GildedRose.new(items).update_quality
+    assert_equal 80, items[0].quality
   end
 
   def test_backstage_passes_increase_by_1_when_sellby_greater_than_10
