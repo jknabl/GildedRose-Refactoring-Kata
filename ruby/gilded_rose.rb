@@ -15,14 +15,8 @@ class GildedRose
   def update_backstage_passes(item)
     if item.quality < 50
       item.quality = item.quality + 1
-      
-      if item.sell_in < 11
-        item.quality += 1 if item.quality < 50
-      end
-
-      if item.sell_in < 6
-        item.quality += 1 if item.quality < 50
-      end
+      item.quality += 1 if (item.quality < 50 && item.sell_in < 11)
+      item.quality += 1 if (item.quality < 50 && item.sell_in < 6)
     end
 
     item.sell_in -= 1
@@ -57,11 +51,8 @@ class GildedRose
 
     item.sell_in -= 1
 
-    if item.sell_in < 0
-      item.quality -= 1 if item.quality > 0
-    end
+    item.quality -= 1 if (item.quality > 0 && item.sell_in < 0)
   end
-
 
   def update_quality
     @items.each do |item|
