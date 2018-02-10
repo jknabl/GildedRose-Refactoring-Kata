@@ -4,18 +4,6 @@ class ItemFactory
     @item = @klass.new(item)
   end
 
-  def name
-    @item.name
-  end
-
-  def sell_in
-    @item.sell_in
-  end
-
-  def quality
-    @item.quality
-  end
-
   def initial_quality_increment
     @item.initial_quality_increment
   end
