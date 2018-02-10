@@ -1,7 +1,7 @@
 class ItemFactory
   def initialize(item)
-    @initial_item = item
-    @item = determine_item_class(item).new(@initial_item)
+    @klass = determine_item_class(item)
+    @item = @klass.new(item)
   end
 
   def name
