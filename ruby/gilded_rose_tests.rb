@@ -1,5 +1,11 @@
 require File.join(File.dirname(__FILE__), 'gilded_rose')
 require 'test/unit'
+require_relative 'item_factory'
+require_relative 'generic_item'
+require_relative 'aged_brie_item'
+require_relative 'backstage_passes_item'
+require_relative 'sulfuras_item'
+require_relative 'conjured_item'
 
 class TestGildedRose < Test::Unit::TestCase
   def test_foo
